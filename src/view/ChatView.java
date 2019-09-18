@@ -50,6 +50,7 @@ public class ChatView extends JFrame {
         });
 
         this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     private void sendMessage() {
