@@ -46,7 +46,7 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("[dd/mm, hh:mm]");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("[dd/MM, hh:mm]");
 
         return String.format("%s %s: %s", dateFormat.format(date), author, content);
     }
