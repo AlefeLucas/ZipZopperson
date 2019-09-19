@@ -9,6 +9,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * Controla a conexão com o servidor, a comunicação de entrada e saída. Os
+ * dados recebidos são tratados em um thread exclusiva.
+ */
 public class ConnectionToServer implements Runnable {
 
     private final ChatClient client;
@@ -25,16 +29,19 @@ public class ConnectionToServer implements Runnable {
         socketInput = new ObjectInputStream(this.socket.getInputStream());
         socketOutput = new ObjectOutputStream(this.socket.getOutputStream());
 
+        //Inicia uma thread para esta conexão
         this.thread = new Thread(this);
         thread.start();
 
 
     }
 
+    /**
+     * Faz as leituras dos objetos enviados pelo servidor. Se for uma Mensagem,
+     * é enviada para interface para ser exibida na tela.
+     */
     @Override
     public void run() {
-
-
         while (true) {
             try {
                 Object object = socketInput.readObject();
@@ -43,10 +50,6 @@ public class ConnectionToServer implements Runnable {
                     Message message = (Message) object;
 
                     client.receiveMessage(message);
-                } else if(object instanceof User){
-                    User user = (User) object;
-
-                    client.receiveNewUser(user);
                 }
 
             } catch (IOException | ClassNotFoundException e) {
@@ -55,6 +58,9 @@ public class ConnectionToServer implements Runnable {
         }
     }
 
+    /**
+     * Envia o objeto passado para o servidor conectado no socket.
+     */
     public void write(Object obj) throws IOException {
         socketOutput.writeObject(obj);
         socketOutput.flush();

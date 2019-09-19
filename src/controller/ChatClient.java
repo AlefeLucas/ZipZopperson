@@ -7,6 +7,10 @@ import web.Client;
 
 import java.io.IOException;
 
+/**
+ * Implementação da classe Client que possui uma instância de ChatView,
+ * fazendo a ponte entre a conexão e a interface.
+ */
 public class ChatClient extends Client {
 
     private ChatView chat;
@@ -28,7 +32,5 @@ public class ChatClient extends Client {
         chat.receiveMessage(message);
     }
 
-    public void receiveNewUser(User user){
 
-    }
 }
