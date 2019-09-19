@@ -11,6 +11,9 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * Classe para a interface visual, janela de chat com campo de texto e botão de enviar.
+ */
 public class ChatView extends JFrame {
     private JPanel rootPanel;
     private JTextArea outputTextArea;
@@ -32,6 +35,7 @@ public class ChatView extends JFrame {
         this.scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         this.user = user;
 
+        //Inicia a conexão do cliente com o servidor no IP e porta especificado
         client = new ChatClient("127.0.0.1", 4321);
         client.setChat(this);
 
