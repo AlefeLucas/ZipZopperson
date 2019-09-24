@@ -2,7 +2,6 @@ package web;
 
 import controller.ChatClient;
 import model.Message;
-import model.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,8 +31,6 @@ public class ConnectionToServer implements Runnable {
         //Inicia uma thread para esta conexão
         this.thread = new Thread(this);
         thread.start();
-
-
     }
 
     /**

@@ -15,9 +15,10 @@ public class ChatClient extends Client {
 
     private ChatView chat;
 
-    public ChatClient(String ip, int port) throws IOException {
-        super(ip, port);
+    public ChatClient(String ip, int port, User user) throws IOException {
+        super(ip, port, user);
         connect(this);
+        getConnection().write(user);
     }
 
     public void setChat(ChatView chat) {

@@ -20,6 +20,7 @@ public class ChatView extends JFrame {
     private JTextArea inputTextArea;
     private JButton sendButton;
     private JScrollPane scrollPane;
+    private JLabel nameLabel;
     private User user;
     private ChatClient client;
 
@@ -36,8 +37,10 @@ public class ChatView extends JFrame {
         this.user = user;
 
         //Inicia a conexão do cliente com o servidor no IP e porta especificado
-        client = new ChatClient("127.0.0.1", 4321);
+        client = new ChatClient("127.0.0.1", 4321, user);
         client.setChat(this);
+
+        nameLabel.setText(user.getName());
 
         sendButton.addActionListener((ActionEvent e) -> {
 
